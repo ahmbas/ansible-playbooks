@@ -1,11 +1,9 @@
 - hosts: workers
-  tasks:
-    roles:
-      - role: webserver
+  roles:
+    - role: webserver
 
-- host: lbs
+- hosts: lbs
   vars:
     webservers: "{{group.workers}}"
-  tasks:
-    roles:
-      - role: loadbalancer
+  roles:
+    - role: loadbalancer
