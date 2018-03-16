@@ -72,3 +72,11 @@ backend app
     {% for host in webservers %}
       server  app{{loop.index}} {{host}}:80 check
     {% endfor %}
+
+
+listen stats # Define a listen section called "stats"
+  bind :5000 # Listen on localhost:9000
+  mode http
+  stats enable  # Enable stats page
+  stats uri /
+  stats hide-version  # Hide HAProxy version
