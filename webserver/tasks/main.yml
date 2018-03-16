@@ -14,7 +14,7 @@
 
 - name: Add nginx template
   template:
-    srs: index.html.j2
+    src: index.html.j2
     dest: /usr/share/nginx/html/index.html
     mode: u=rw,g=r,o=r
     owner: root
