@@ -45,7 +45,7 @@
   copy:
     src: files/loadbalancer.py
     dest: /etc/ansible/facts.d/loadbalancer.py
-    mode: 770
+    mode: "u=rwx,g=rx,o=rx"
     owner: root
     group: root
 
