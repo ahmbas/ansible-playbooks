@@ -6,7 +6,7 @@
       - webservers is defined
 
 - name: Install haproxy and firewalld
-  yum: name=haproxy,firewalld state=installed
+  yum: name=haproxy,firewalld,python-pip state=installed
 
 - name: Start services
   service: name={{item}} state=started
@@ -27,3 +27,30 @@
 
 - name: Restart haproxy
   service: name=haproxy state=restarted
+
+- name: Install haproxy stats
+  pip:
+    name: haproxy-stats
+    state: present
+
+- name: Ensure facts dir exists
+  file:
+    state: directory
+    path: /etc/ansible/facts.d
+    owner: root
+    group: root
+    mode: 770
+
+- name: Add custom facts scripts
+  copy:
+    src: files/loadbalancer.py
+    dest: /etc/ansible/facts.d/loadbalancer.py
+    mode: 770
+    owner: root
+    group: root
+
+- name: Reload facts
+  setup: "filter=ansible_local"
+
+- name: Print stats
+  shell: echo {{ansible_local.loadbalancer}} >> /root/lb_stats
