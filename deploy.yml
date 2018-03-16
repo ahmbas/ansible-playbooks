@@ -1,0 +1,28 @@
+- hosts: workers
+  serial: 1
+  tasks:
+    - name: Disable backend
+      haproxy:
+        state: disabled
+        host: '{{ inventory_hostname }}'
+        socket: /var/lib/haproxy/stats
+        backend: app
+      delegate_to: "{{item}}"
+      with_items: "{{groups.lbs}}"
+
+    - name: Update template:
+      template:
+        srs: index.html.j2
+        dest: /usr/share/nginx/html/index.html
+        mode: u=rw,g=r,o=r
+        owner: root
+        group: root
+
+    - name: Put back in LB
+      haproxy:
+        state: enabled
+        host: '{{ inventory_hostname }}'
+        socket: /var/lib/haproxy/stats
+        backend: app
+      delegate_to: "{{item}}"
+      with_items: "{{groups.lbs}}"

@@ -1,0 +1,28 @@
+---
+# tasks file for loadbalancer
+- name: Fail when webservers is not defined
+  fail:
+    when: webservers is not defined
+
+- name: Install haproxy and firewalld
+  yum: name=haproxy,firewalld state=installed
+
+- name: Start services
+  service: name={{item}} state=started
+  with_items:
+    - firewalld
+    - haproxy
+
+- name: Open firewall
+  firewalld: state=enabled port=80/tcp permanent=true immediate=true
+
+- name: Add haproxy config
+  template:
+    srs: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 660
+    owner: root
+    group: root
+
+- name: Restart haproxy
+  service: name=haproxy state=restarted

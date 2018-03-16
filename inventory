@@ -1,0 +1,4 @@
+[lbs]
+lb.hamada.com
+[workers]
+worker[1:2].hamada.com
