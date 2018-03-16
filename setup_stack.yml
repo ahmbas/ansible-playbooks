@@ -4,6 +4,6 @@
 
 - hosts: lbs
   vars:
-    webservers: "{{group.workers}}"
+    webservers: "{{groups.workers}}"
   roles:
     - role: loadbalancer
