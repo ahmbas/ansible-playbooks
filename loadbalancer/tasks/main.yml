@@ -1,8 +1,9 @@
 ---
 # tasks file for loadbalancer
 - name: Fail when webservers is not defined
-  fail:
-    when: webservers is not defined
+  assert:
+    that:
+      - webservers is defined
 
 - name: Install haproxy and firewalld
   yum: name=haproxy,firewalld state=installed
