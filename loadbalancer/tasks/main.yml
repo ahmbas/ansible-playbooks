@@ -43,7 +43,7 @@
 
 - name: Add custom facts scripts
   copy:
-    src: files/loadbalancer.py
+    src: files/loadbalancer.fact
     dest: /etc/ansible/facts.d/loadbalancer.fact
     mode: "u=rwx,g=rx,o=rx"
     owner: root
