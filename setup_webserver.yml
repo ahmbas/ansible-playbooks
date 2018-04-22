@@ -1,0 +1,19 @@
+- hosts: localhost
+  tasks:
+  - name: Install nginx and firewalld
+    yum: name={{item}} state=installed
+    with_items:
+      - firewalld
+      - "{{webserver}}"
+
+  - name: Start services
+    service: name={{item}} state=started
+    with_items:
+      - firewalld
+      - "{{webserver}}"
+
+  - name: Open firewall
+    firewalld: state=enabled port=80/tcp permanent=true immediate=true
+
+  - name: Restart nginx
+    service: name={{webserver}} state=start
