@@ -10,7 +10,7 @@
         "{{result}}"
 
   - name: Print
-    debug: var=result
+    debug: var=hostvars[inventory_hostname]
     
   - name: Get IP
     shell: hostname -I
