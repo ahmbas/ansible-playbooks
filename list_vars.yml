@@ -5,7 +5,7 @@
     register: result
   - name: Ansible create file with content example
     copy:
-      dest: "/root/list_vars"
+      dest: "/var/www/miq/vmdb/list_vars"
       content: |
         "{{result}}"
 
