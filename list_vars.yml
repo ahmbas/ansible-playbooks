@@ -3,4 +3,8 @@
   - name: Show all vars
     setup:
     register: result
-  - debug: var=result verbosity=4
+  - name: Ansible create file with content example
+    copy:
+      dest: "/tmp/list_vars"
+      content: |
+        "{{result}}"
