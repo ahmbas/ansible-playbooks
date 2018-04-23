@@ -5,6 +5,14 @@
     register: result
   - name: Ansible create file with content example
     copy:
-      dest: "/tmp/list_vars"
+      dest: "/root/list_vars"
       content: |
         "{{result}}"
+
+  - name: Print
+    debug: var=result
+    
+  - name: Get IP
+    shell: hostname -I
+    register: ip
+  - debug: var=ip
