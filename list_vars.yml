@@ -2,3 +2,5 @@
   tasks:
   - name: Show all vars
     setup:
+    register: result
+  - debug: var=result verbosity=4
