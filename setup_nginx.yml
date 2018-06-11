@@ -1,0 +1,7 @@
+- hosts: ec2
+  tasks:
+  - name: Install nginx and firewalld
+    yum: name=nginx state=installed
+
+  - name: Start services
+    service: name=nginx state=started
