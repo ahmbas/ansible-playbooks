@@ -1,7 +1,13 @@
 - hosts: localhost
   gather_facts: false
+  vars:
+    state:
+    reboot:
   tasks:
-  - name: disable selinux
+  - name: set selinux
     selinux:
       policy: targeted
-      state: disabled
+      state: "{{ state }}"
+  - name: check if reboot needed
+    shell: reboot
+    when: reboot == 1
