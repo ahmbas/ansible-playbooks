@@ -10,4 +10,4 @@
       state: "{{ state }}"
   - name: check if reboot needed
     shell: reboot
-    when: reboot == 1
+    when: reboot == "Yes"
