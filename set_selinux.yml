@@ -1,4 +1,4 @@
-- hosts: linux
+- hosts: localhost
   gather_facts: false
   tasks:
   - name: disable selinux
