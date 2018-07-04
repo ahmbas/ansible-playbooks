@@ -1,0 +1,14 @@
+- hosts: linux
+  gather_facts: false
+  vars:
+    state:
+    port_start:
+    port_end:
+    protocol:
+  tasks:
+  - name: set firewall
+    firewalld:
+      state: "{{ state }}"
+      port: "{{ port1 }}-{{ port2 }}/{{ protocol }}"
+      permanent: true
+      immediate: true
