@@ -4,4 +4,4 @@
   - name: disable selinux
     selinux:
       policy: targeted
-      state: "disbaled"
+      state: disabled
