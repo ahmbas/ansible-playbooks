@@ -1,4 +1,4 @@
-- hosts: ec2
+- hosts: all
   tasks:
   - name: Install nginx and firewalld
     yum: name=nginx state=installed
