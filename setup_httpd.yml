@@ -5,3 +5,6 @@
 
   - name: start services
     service: name=httpd state=started enabled=yes
+
+  - name: open firewall
+    firewalld: state=enabled port=80/tcp permanent=true immediate=true
