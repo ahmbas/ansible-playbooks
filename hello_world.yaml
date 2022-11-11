@@ -2,5 +2,5 @@
 - hosts: all
   tasks:
   - name: Hello World!
-    adebug:
+    debug:
       msg: "{{ greeting }}, {{name}}!"
