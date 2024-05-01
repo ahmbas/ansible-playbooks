@@ -1,0 +1,6 @@
+---
+plugin: kubevirt.core.kubevirt
+connections:
+ - host:  "{{kube_host}}"
+   token: "{{kube_token}}"
+   ssl_verify: false
