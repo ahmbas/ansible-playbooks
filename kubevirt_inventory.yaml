@@ -1,4 +1,4 @@
-plugin: kubevirt
+plugin: kubevirt.core.kubevirt
 connections:
  - host:  "{{kube_host}}"
    token: "{{kube_token}}"
