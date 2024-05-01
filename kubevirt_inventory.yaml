@@ -1,3 +1,4 @@
+---
 plugin: kubevirt.core.kubevirt
 connections:
  - host:  "{{kube_host}}"
