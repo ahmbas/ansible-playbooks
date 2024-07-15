@@ -1,5 +1,5 @@
----
-- plugin: kubevirt.core.kubevirt
-  host:  "{{kube_host}}"
-  token: "{{kube_token}}"
-  ssl_verify: false
+plugin: kubevirt.core.kubevirt
+connections:
+  - host: "{{ lookup('ansible.builtin.env', 'KUBE_API') }}"
+    api_key: "{{ lookup('ansible.builtin.env', 'KUBE_TOKEN') }}"
+    validate_certs: false
